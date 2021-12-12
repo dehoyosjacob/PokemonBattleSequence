@@ -7,6 +7,7 @@ public class TypeEffect : MonoBehaviour
 {
     [SerializeField] float delay = 0.1f;
     [SerializeField] string fullText;
+    [SerializeField] Image selectionArrow;
 
     string currentText = "";
 
@@ -23,6 +24,11 @@ public class TypeEffect : MonoBehaviour
             currentText = fullText.Substring(0,i);
             this.GetComponent<Text>().text = currentText;
             yield return new WaitForSeconds(delay);
+        }
+
+        if(selectionArrow != null)
+        {
+            selectionArrow.gameObject.SetActive(true);
         }
     }
 }
