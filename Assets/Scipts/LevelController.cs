@@ -8,11 +8,11 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject menuPanel;
     [SerializeField] GameObject fightPanel;
     [SerializeField] GameObject bagPanel;
-    [SerializeField] GameObject pokemonPanel;
     [SerializeField] Text firstText;
     [SerializeField] Text secondText;
 
     public ArrowControl _menuArrows;
+    public GameObject pokemonPanel;
 
     //test variables
     bool pokemonTest;
@@ -35,7 +35,7 @@ public class LevelController : MonoBehaviour
             }
         }
 
-        else if(Input.GetKeyUp(KeyCode.Backspace))
+        else if(Input.GetKeyUp(KeyCode.Backspace) && !pokemonPanel.activeSelf)
         {
             if (!firstText.gameObject.activeSelf)
             {
@@ -80,7 +80,7 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    void BackToMenu()
+    public void BackToMenu()
     {
         if(fightPanel.activeSelf)
         {
