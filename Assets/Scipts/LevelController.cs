@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject menuPanel;
     [SerializeField] GameObject fightPanel;
     [SerializeField] GameObject bagPanel;
+    [SerializeField] GameObject pokemonPanel;
     [SerializeField] Text firstText;
     [SerializeField] Text secondText;
 
@@ -28,7 +29,7 @@ public class LevelController : MonoBehaviour
                 BeginBattle();
             }
 
-            else if(menuPanel.activeSelf)
+            else if(menuPanel.activeSelf && !_menuArrows.bottomRight.gameObject.activeSelf)
             {
                 MenuSelect();
             }
@@ -52,25 +53,23 @@ public class LevelController : MonoBehaviour
 
     void MenuSelect()
     {
-        if(_menuArrows.topLeft.gameObject.activeSelf)
+        menuPanel.SetActive(false);
+        secondText.gameObject.SetActive(false);
+
+        if (_menuArrows.topLeft.gameObject.activeSelf)
         {
-            menuPanel.SetActive(false);
-            secondText.gameObject.SetActive(false);
             fightPanel.SetActive(true);
         }
 
         else if(_menuArrows.bottomLeft.gameObject.activeSelf)
         {
             Debug.Log("Pokemon menu selected!");
-            pokemonTest = true;
+            pokemonPanel.SetActive(true);
         }
 
         else if (_menuArrows.topRight.gameObject.activeSelf)
         {
             Debug.Log("Bag menu selected!");
-            //bagTest = true;
-            menuPanel.SetActive(false);
-            fightPanel.SetActive(false);
             bagPanel.SetActive(true);
         }
 
@@ -88,10 +87,10 @@ public class LevelController : MonoBehaviour
             fightPanel.SetActive(false);
         }
 
-        else if(pokemonTest)
+        else if(pokemonPanel.activeSelf)
         {
             Debug.Log("Exit the pokemon menu");
-            pokemonTest = false;
+            pokemonPanel.SetActive(false);
         }
 
         else if(bagPanel.activeSelf)
