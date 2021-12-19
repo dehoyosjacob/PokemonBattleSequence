@@ -6,6 +6,7 @@ public class PokemonMenuController : MonoBehaviour
 {
     [SerializeField] GameObject defaultScreen;
     [SerializeField] GameObject cancelScreen;
+    [SerializeField] GameObject pokemonActionPanel;
 
     public LevelController _levelController;
  
@@ -19,30 +20,40 @@ public class PokemonMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp("d") || Input.GetKeyUp(KeyCode.RightArrow))
+        if(!pokemonActionPanel.activeSelf)
         {
-            if(defaultScreen.activeSelf)
+            if (Input.GetKeyUp("d") || Input.GetKeyUp(KeyCode.RightArrow))
             {
-                defaultScreen.SetActive(false);
-                cancelScreen.SetActive(true);
+                if (defaultScreen.activeSelf)
+                {
+                    defaultScreen.SetActive(false);
+                    cancelScreen.SetActive(true);
+                }
+            }
+
+            else if (Input.GetKeyUp("a") || Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                if (cancelScreen.activeSelf)
+                {
+                    cancelScreen.SetActive(false);
+                    defaultScreen.SetActive(true);
+                }
+            }
+
+            else if (Input.GetKeyUp(KeyCode.Return))
+            {
+                if (cancelScreen.activeSelf)
+                {
+                    _levelController.BackToMenu();
+                }
+
+                else if(defaultScreen.activeSelf)
+                {
+                    pokemonActionPanel.SetActive(true);
+                }
             }
         }
 
-        else if(Input.GetKeyUp("a") || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            if(cancelScreen.activeSelf)
-            {
-                cancelScreen.SetActive(false);
-                defaultScreen.SetActive(true);
-            }
-        }
 
-        else if(Input.GetKeyUp(KeyCode.Return))
-        {
-            if(cancelScreen.activeSelf)
-            {
-                _levelController.BackToMenu();
-            }
-        }
     }
 }
