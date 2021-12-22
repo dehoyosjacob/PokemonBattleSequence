@@ -7,9 +7,9 @@ public class BagController : MonoBehaviour
 {
     [SerializeField] Image leftArrow;
     [SerializeField] Image rightArrow;
-    [SerializeField] GameObject itemsPanel;
-    [SerializeField] GameObject keyItemsPanel;
-    [SerializeField] GameObject pokeballsPanel;
+    public GameObject itemsPanel;
+    public GameObject keyItemsPanel;
+    public GameObject pokeballsPanel;
 
     void Start()
     {

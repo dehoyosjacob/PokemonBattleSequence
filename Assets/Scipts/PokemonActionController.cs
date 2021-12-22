@@ -9,6 +9,11 @@ public class PokemonActionController : MonoBehaviour
     [SerializeField] Image midArrow;
     [SerializeField] Image botArrow;
     [SerializeField] GameObject pokemonActionMenu;
+    [SerializeField] GameObject bag;
+    [SerializeField] GameObject pokemonSummary;
+    [SerializeField] GameObject movesSummary;
+
+    public BagController _bagController;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +38,35 @@ public class PokemonActionController : MonoBehaviour
 
         else if(Input.GetKeyUp(KeyCode.Return))
         {
-            if(botArrow.gameObject.activeSelf)
+            if(topArrow.gameObject.activeSelf)
+            {
+                pokemonSummary.SetActive(true);
+            }
+
+            else if(midArrow.gameObject.activeSelf)
+            {
+                bag.SetActive(true);
+                _bagController.itemsPanel.SetActive(true);
+                _bagController.keyItemsPanel.SetActive(false);
+                _bagController.pokeballsPanel.SetActive(false);
+            }
+
+            else if(botArrow.gameObject.activeSelf)
             {
                 pokemonActionMenu.SetActive(false);
+            }
+        }
+
+        else if(Input.GetKeyUp(KeyCode.Backspace))
+        {
+            if(bag.activeSelf)
+            {
+                bag.SetActive(false);
+            }
+
+            else if(pokemonSummary.activeSelf && !movesSummary.activeSelf)
+            {
+                pokemonSummary.SetActive(false);
             }
         }
     }
