@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PokemonDataHolder : MonoBehaviour
 {
-    [SerializeField] int pokemonNumber;
-    [SerializeField] int lvl;
-    [SerializeField] int maxHealth;
-    [SerializeField] int attack;
-    [SerializeField] int defense;
-    [SerializeField] int specialAttack;
-    [SerializeField] int specialDefense;
-    [SerializeField] int speed;
+    public int pokemonNumber;
+    public int lvl;
+    public int maxHealth;
+    public int attack;
+    public int defense;
+    public int specialAttack;
+    public int specialDefense;
+    public int speed;
+    public string pokemonName;
 }
