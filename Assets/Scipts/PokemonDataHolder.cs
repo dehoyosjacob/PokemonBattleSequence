@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PokemonDataHolder : MonoBehaviour
 {
-    public int pokemonNumber;
+    public string pokemonNumber;
     public int lvl;
     public int maxHealth;
     public int attack;
