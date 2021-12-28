@@ -13,6 +13,12 @@ public class LevelController : MonoBehaviour
 
     public ArrowControl _menuArrows;
     public GameObject pokemonPanel;
+    public PokemonDataHolder pokemon1;
+    public PokemonDataHolder pokemon2;
+
+    int escapeOdds;
+    int attempts = 0;
+    int randomNumber;
 
     //test variables
     bool pokemonTest;
@@ -23,13 +29,13 @@ public class LevelController : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Return))
         {
-            Debug.Log("Pressed Enter");
+            //Debug.Log("Pressed Enter");
             if(firstText.gameObject.activeSelf && !menuPanel.activeSelf)
             {
                 BeginBattle();
             }
 
-            else if(menuPanel.activeSelf && !_menuArrows.bottomRight.gameObject.activeSelf)
+            else if(menuPanel.activeSelf)
             {
                 MenuSelect();
             }
@@ -53,22 +59,25 @@ public class LevelController : MonoBehaviour
 
     void MenuSelect()
     {
-        menuPanel.SetActive(false);
+        
         secondText.gameObject.SetActive(false);
 
         if (_menuArrows.topLeft.gameObject.activeSelf)
         {
+            menuPanel.SetActive(false);
             fightPanel.SetActive(true);
         }
 
         else if(_menuArrows.bottomLeft.gameObject.activeSelf)
         {
+            menuPanel.SetActive(false);
             Debug.Log("Pokemon menu selected!");
             pokemonPanel.SetActive(true);
         }
 
         else if (_menuArrows.topRight.gameObject.activeSelf)
         {
+            menuPanel.SetActive(false);
             Debug.Log("Bag menu selected!");
             bagPanel.SetActive(true);
         }
@@ -76,7 +85,7 @@ public class LevelController : MonoBehaviour
         else if (_menuArrows.bottomRight.gameObject.activeSelf)
         {
             Debug.Log("Run menu selected!");
-            runTest = true;
+            Run(pokemon1.speed, pokemon2.speed);
         }
     }
 
@@ -102,5 +111,30 @@ public class LevelController : MonoBehaviour
 
         menuPanel.SetActive(true);
         secondText.gameObject.SetActive(true);
+    }
+
+    void Run(int pSpeed, int oSpeed)
+    {
+        if(pSpeed > oSpeed)
+        {
+            Debug.Log("Ran away safely!");
+        }
+
+        else if(oSpeed >= pSpeed)
+        {
+            attempts++;
+            escapeOdds = (((pSpeed * 128) / oSpeed) + (30 * attempts)) % 256;
+            randomNumber = Random.Range(0,256);
+
+            if(randomNumber < escapeOdds)
+            {
+                Debug.Log("Ran away safely!");
+            }
+
+            else if(randomNumber >= escapeOdds)
+            {
+                Debug.Log("Can't Escape!");
+            }
+        }
     }
 }
