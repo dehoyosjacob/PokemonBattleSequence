@@ -10,6 +10,10 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject bagPanel;
     [SerializeField] Text firstText;
     [SerializeField] Text secondText;
+    [SerializeField] Text escape_txt;
+    [SerializeField] Text noEscape_txt;
+    [SerializeField] Text win_txt;
+    [SerializeField] Text lose_txt;
 
     public ArrowControl _menuArrows;
     public GameObject pokemonPanel;
@@ -118,6 +122,7 @@ public class LevelController : MonoBehaviour
         if(pSpeed > oSpeed)
         {
             Debug.Log("Ran away safely!");
+            escape_txt.gameObject.SetActive(true);
         }
 
         else if(oSpeed >= pSpeed)
@@ -129,11 +134,13 @@ public class LevelController : MonoBehaviour
             if(randomNumber < escapeOdds)
             {
                 Debug.Log("Ran away safely!");
+                escape_txt.gameObject.SetActive(true);
             }
 
             else if(randomNumber >= escapeOdds)
             {
                 Debug.Log("Can't Escape!");
+                noEscape_txt.gameObject.SetActive(true);
             }
         }
     }
