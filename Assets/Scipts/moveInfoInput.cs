@@ -7,13 +7,9 @@ public class moveInfoInput : MonoBehaviour
 {
     public string moveName;
     public int maxPP;
-    public int currentPP;
-    public Sprite moveType;
+    public string currentPP;
+    public string moveTypeFight;
+    public Sprite moveTypeSum;
     public int power;
     public int accuracy;
-
-    void Start()
-    {
-        currentPP = maxPP;
-    }
 }

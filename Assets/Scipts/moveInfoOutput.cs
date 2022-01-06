@@ -11,7 +11,7 @@ public class moveInfoOutput : MonoBehaviour
     [SerializeField] Text maxPP_Summary;
     [SerializeField] Text currPP_Fight;
     [SerializeField] Text currPP_Summary;
-    [SerializeField] Image typeFight;
+    [SerializeField] Text typeFight;
     [SerializeField] Image typeSummary;
     [SerializeField] Text movePower;
     [SerializeField] Text moveAccuracy;
@@ -59,7 +59,22 @@ public class moveInfoOutput : MonoBehaviour
 
         if(typeFight)
         {
-            typeFight.sprite = infoInput.moveType;
+            typeFight.text = infoInput.moveTypeFight;
+        }
+
+        if(typeSummary)
+        {
+            typeSummary.sprite = infoInput.moveTypeSum;
+        }
+
+        if(movePower)
+        {
+            movePower.text = infoInput.power.ToString();
+        }
+
+        if(moveAccuracy)
+        {
+            moveAccuracy.text = infoInput.accuracy.ToString(); ;
         }
     }
 }
